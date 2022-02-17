@@ -251,6 +251,10 @@ helm_uninstall() {
   logfile="/tmp/log"
   mkdir -p /tmp
 
+  if [ "$force" == "true" ]; then
+    upgrade_args+=(" || true")
+  fi
+
   echo "Running command helm ${uninstall_args[@]} | tee $logfile"
   $helm_bin "${uninstall_args[@]}" | tee $logfile
 }
