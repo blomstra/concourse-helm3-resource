@@ -1,5 +1,4 @@
 FROM alpine/helm:3.8.0
-LABEL maintainer "Yann David (@Typositoire) <davidyann88@gmail>"
 
 #Versions for gcloud,kubectl,doctl
 ARG KUBERNETES_VERSION=1.21.5
