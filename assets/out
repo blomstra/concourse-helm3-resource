@@ -251,14 +251,13 @@ helm_uninstall() {
   logfile="/tmp/log"
   mkdir -p /tmp
 
-  if [ "$force" == "true" ]; then
-    uninstall_args+=("|| true")
-  fi
-
-  uninstall_args+=("| tee $logfile")
-
   echo "Running command helm ${uninstall_args[@]}"
-  $helm_bin "${uninstall_args[@]}" | tee $logfile
+
+  if [ "$force" == "true" ]; then
+    $helm_bin "${uninstall_args[@]}" || true
+  else
+    $helm_bin "${uninstall_args[@]}" | tee $logfile
+  fi
 }
 
 helm_test() {
